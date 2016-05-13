@@ -8,13 +8,7 @@
 import scrapy
 
 
-class ZhihuItem(scrapy.Item):
+class Job58Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    name = scrapy.Field()
-    area = scrapy.Field()
-    industry = scrapy.Field()
-    work = scrapy.Field()
-    sex = scrapy.Field()
-    education = scrapy.Field()
     pass
