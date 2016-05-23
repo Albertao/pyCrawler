@@ -8,15 +8,8 @@ import MySQLdb as md
 from scrapy.conf import settings
 
 class MysqlPipeline(object):
-    def __init__(self):
-        self.dbpool = md.connect(
-            host="localhost",#settings['MYSQL_HOST'],
-            port=3306,#settings['MYSQL_PORT'],
-            user="root",#settings['MYSQL_USER'],
-            passwd="hsb4325HSB",#settings['MYSQL_PASSWORD'],
-            db="crawl",#settings['MYSQL_DB'],
-            charset="utf8"
-        )
+    def __init__(self, dbp):
+        self.dbpool = dbp
 
 
     def process_item(self, item, spider):
@@ -35,3 +28,15 @@ class MysqlPipeline(object):
                  item['introduction'])
                 )
         self.dbpool.commit()
+
+    @classmethod
+    def from_settings(cls, settings):
+        db_pool = md.connect(
+            host=settings.get('MYSQL_HOST'),
+            port=settings.get('MYSQL_PORT'),
+            user=settings.get('MYSQL_USER'),
+            passwd=settings.get('MYSQL_PASSWORD'),
+            db=settings.get('MYSQL_DB'),
+            charset=settings.get('MYSQL_CHARSET')
+        )
+        return cls(db_pool)

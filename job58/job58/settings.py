@@ -75,8 +75,10 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+#db settings below
 MYSQL_HOST = "localhost"
+MYSQL_PORT = 3306
 MYSQL_USER = "root"
-MYSQL_PASSWORD = "hsb4325HSB"
-MYSQL_DB = "crawl"
+MYSQL_PASSWORD = "db_password"
+MYSQL_DB = "db"
 MYSQL_CHARSET = "utf8"
