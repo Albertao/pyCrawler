@@ -6,14 +6,16 @@ from job58.utils import format
 class KeySpider(scrapy.Spider):
     name = "key"
     allowed_domains = ["gz.58.com"]
-    start_urls = (
-        'http://www.gz.58.com/job/pn1/?key=化工',
-    )
+    start_urls = []
+
+    def __init__(self, keyword="化工", page=70,  *a, **kw):
+        for i in range(0, int(page)):
+            self.start_urls.append('http://www.gz.58.com/job/pn'+str(i)+'/?key='+keyword)
+        super(scrapy.Spider, self).__init__(*a, **kw)
 
     def parse(self, response):
-        for i in range(0, 70):
-            parent_url = 'http://www.gz.58.com/job/pn'+str(i)+'/?key=化工'
-            yield scrapy.http.Request(parent_url, callback=self.parseThird)
+        for url in self.start_urls:
+            yield scrapy.http.Request(url, callback=self.parseThird)
 
     def parseSecond(self, response):
         item = response.meta['item']
