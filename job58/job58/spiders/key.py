@@ -26,6 +26,8 @@ class KeySpider(scrapy.Spider):
         item['degree'] = format(response.xpath('//div[@class="xq"]/ul/li[1]/div[@class="fl"]/text()').extract()[1])
         item['job_year'] = format(response.xpath('//div[@class="xq"]/ul/li[2]/div[@class="fl"]/text()').extract()[1])
         item['introduction'] = format(response.xpath('//div[@id="tabC"]/div[1]/div[1]').extract()[0])
+        item['character'] = format(response.xpath('//div[@class="posSumLeft"]/div[2]/ul/li[2]/text()').extract()[1])
+        item['scale'] = format(response.xpath('//li[@class="scale"]/text()').extract()[1])
         return item
 
     def parseThird(self, response):

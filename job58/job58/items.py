@@ -15,6 +15,8 @@ class Job58Item(scrapy.Item):
     company_name = scrapy.Field()
     salary = scrapy.Field()
     degree = scrapy.Field()
+    character = scrapy.Field()
+    scale = scrapy.Field()
     job_name = scrapy.Field()
     location = scrapy.Field()
     job_year = scrapy.Field()

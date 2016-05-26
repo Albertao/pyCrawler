@@ -14,8 +14,8 @@ class MysqlPipeline(object):
     def process_item(self, item, spider):
         cur = self.dbpool.cursor()
         cur.execute(\
-                "insert into jobs (`id`, `url`, `company_name`, `salary`, `degree`, `job_name`, `location`, `job_year`, `introduction`)\
-                values (null, %s, %s, %s, %s, %s, %s, %s, %s)",
+                "insert into jobs (`id`, `url`, `company_name`, `salary`, `degree`, `job_name`, `location`, `job_year`, `introduction`, `nature`, `scope`)\
+                values (null, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 
                 (item['url'],
                  item['company_name'],
@@ -24,7 +24,9 @@ class MysqlPipeline(object):
                  item['job_name'],
                  item['location'],
                  item['job_year'],
-                 item['introduction'])
+                 item['introduction'],
+                 item['character'],
+                 item['scale'])
                 )
         self.dbpool.commit()
 
